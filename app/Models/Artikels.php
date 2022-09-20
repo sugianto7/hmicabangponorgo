@@ -25,13 +25,18 @@ class Artikels extends Model
     }
     public function getCreatedAtAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->isoFormat('dddd, D MMMM Y | HH.s');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->isoFormat('ddd, D MMM Y');
     }
-
+    // dddd, D MMMM Y
     public function getUpdatedAtAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->diffForHumans();
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->isoFormat('dddd, D MMMM Y | H.s');
     }
+
+    // public function getUpdatedAtAttribute($date)
+    // {
+    //     return Carbon::createFromFormat('Y-m-d H:i:s', $date)->diffForHumans();
+    // }
         // public function user()
         // {
         //     return $this->belongsTo(User::class);

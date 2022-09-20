@@ -73,7 +73,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Links Gmail</label>
+                                            <label class="col-sm-3 col-form-label">Links Youtube</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" placeholder="Links Gmail" wire:model="fb">
                                                 @error('fb') <p class="text-danger">{{$message}}</p> @enderror

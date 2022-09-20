@@ -3,7 +3,7 @@
     <h3 class="page-title">
       <span class="page-title-icon bg-gradient-primary text-white mr-2">
         <i class="mdi mdi-face-profile"></i>
-      </span> Profil <i class="mdi mdi-chevron-double-right"></i><a href="">Struktur Kepengurusan</a>
+      </span> Profil <i class="mdi mdi-chevron-double-right"></i><a href="#">Galeri Kegiatan</a>
     </h3>
   </div>
   <div>
@@ -12,7 +12,7 @@
         <div class="col-lg-12">
           <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Struktur Cabang</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Galeri Kegiatan</h6>
               <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#exmpleModal" id="#myBtn"><i class="fa fa-plus"></i> Tambah </button>
             </div>
             @if (session()->has('message'))
@@ -84,18 +84,18 @@
                 <form enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="validationServer01">Nama Pengurus</label>
-                            <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Judul Tentang" required wire:model="name">
+                            <label for="validationServer01">Nama Kegiatan</label>
+                            <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Nama Kegiatan" required wire:model="name">
                             @error('name') <span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="form-group">
-                            <label for="validationServer01">Jabatan Pengurus</label>
-                            <input type="text" class="form-control is-valid" id="validationServer01"placeholder=")Jabatan" wire:model="tempat" >
+                            <label for="validationServer01">Tempat Kegiatan</label>
+                            <input type="text" class="form-control is-valid" id="validationServer01"placeholder=")Tempat Kegiatan" wire:model="tempat" >
                             @error('tempat') <span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="form-group">
-                            <label for="validationServer01">Jabatan Pengurus</label>
-                            <input type="text" class="form-control is-valid" id="validationServer01"placeholder=")Jabatan" wire:model="ket" >
+                            <label for="validationServer01">Keterangan Kegiatan</label>
+                            <input type="text" class="form-control is-valid" id="validationServer01"placeholder=")Keterangan Kegiatan" wire:model="ket" >
                             @error('ket') <span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="form-group">
@@ -123,19 +123,19 @@
                 <form enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="validationServer01">Nama Ketua Umum</label>
+                            <label for="validationServer01">Nama Kegiatan</label>
                             <input type="hidden" wire:model="galeri_id">
-                            <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Judul Tentang" required wire:model="name">
+                            <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Nama Kegiatan" required wire:model="name">
                             @error('name') <span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="form-group">
-                            <label for="validationServer01">Jabatan Pengrurus</label>
-                            <input type="text" class="form-control is-valid" id="validationServer01"placeholder="tempat" wire:model="tempat" >
+                            <label for="validationServer01">Tempat kegiatan</label>
+                            <input type="text" class="form-control is-valid" id="validationServer01"placeholder="tempat Kegiatan" wire:model="tempat" >
                             @error('tempat') <span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="form-group">
-                            <label for="validationServer01">Jabatan Pengurus</label>
-                            <input type="text" class="form-control is-valid" id="validationServer01"placeholder=")Jabatan" wire:model="ket" >
+                            <label for="validationServer01">Keterangan Kegiatan</label>
+                            <input type="text" class="form-control is-valid" id="validationServer01"placeholder="Keterangan Kegiatan" wire:model="ket" >
                             @error('ket') <span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="form-group">

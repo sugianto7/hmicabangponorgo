@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', null),
+    'domain' => env('http://localhost:8000/', null),
 
     /*
     |--------------------------------------------------------------------------

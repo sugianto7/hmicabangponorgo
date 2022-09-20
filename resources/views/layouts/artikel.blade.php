@@ -44,14 +44,14 @@
     
     <!--====== Responsive css ======-->
     <link rel="stylesheet" href="{{ asset('base/css/responsive.css') }}">
-  
+  @livewireStyles
 </head>
 
 <body>
    
     <!--====== PRELOADER PART START ======-->
     
-    <!--     <div class="preloader">
+<!--         <div class="preloader">
             <div class="loader rubix-cube">
                 <div class="layer layer-1"></div>
                 <div class="layer layer-2"></div>
@@ -63,12 +63,12 @@
                 <div class="layer layer-8"></div>
             </div>
         </div>
- -->    
+    --> 
     <!--====== PRELOADER PART START ======-->
     
     <!--====== HEADER PART START ======-->
     
-    <header id="header-part">
+<header id="header-part">
        
         <div class="header-top d-none d-lg-block">
             <div class="container">
@@ -77,13 +77,14 @@
                         <div class="header-contact text-lg-left text-center">
                             <ul>
                                 <li><img src="{{ asset('base/images/all-icon/map.png') }}" alt="icon"><span>127/5 Siman, Ponorogo</span></li>
-                                <li><img src="{{ asset('base/images/all-icon/email.png') }}" alt="icon"><span>info@yourmail.com</span></li>
+                                <li><img src="{{ asset('base/images/all-icon/email.png') }}" alt="icon"><span>hmicabangponrogobersinergi@gmail.com</span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="header-opening-time text-lg-right text-center">
-                            <p><script type='text/javascript'>
+                            <p>
+                                <script type='text/javascript'>
                                   var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
                                   var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
                                   var date = new Date();
@@ -96,20 +97,21 @@
                                   document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
                                   //-->
                                 </script></i>&ensp;
-                                  <b id="clock"></b></p>
+                                  <b id="clock"></b>
+                              </p>
                         </div>
                     </div>
                 </div> <!-- row -->
             </div> <!-- container -->
         </div> <!-- header top -->
         
-        <div class="header-logo-support pt-30 pb-30">
+        <div class="header-logo-support pt-20 pb-20">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
                         <div class="logo">
                             <a href="index-2.html">
-                                <img src="{{ asset('base/images/logo.png') }}" alt="" height="50" width="auto">
+                                <img src="{{ asset('base/images/logo.png') }}" alt="" height="60" width="auto">
                             </a>
                         </div>
                     </div>
@@ -121,7 +123,7 @@
                                 </div>
                                 <div class="cont">
                                     <p>Need Help? call us free</p>
-                                    <span>+62 823-3298-1714</span>
+                                    <span>62 823-3298-1714</span>
                                 </div>
                             </div>
                         </div>
@@ -173,7 +175,7 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('kontak') }}kontak">Contact</a>
+                                        <a href="{{ route('kontak') }}">Contact</a>
                                     </li>
                                 </ul>
                             </div>
@@ -181,8 +183,7 @@
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-4">
                         <div class="right-icon text-right" >
-                            <ul>
-                                <style>
+                            <style>
                                 .dropdown {
                                   position: relative;
                                   display: inline-block;
@@ -216,46 +217,48 @@
                                 .dropdown:hover .dropbtn {
                                   background-color: #30bf08;
                                 }
-                                </style>
+                            </style>
+                            <ul>
                                 <li><a href="#" id="search"><i class="fa fa-search"></i></a></li>
                              @if(Route::has('login'))
-			               	 @auth
-			               	 	@if(Auth::user()->utype === 'ADM')
-			               	 	<div class="dropdown">
-			               	 		<i class="fa fa-user"></i>
-								  <div class="dropdown-content">
-								  	<a href="#">{{Auth::user()->name}}</a>
-								    <a href="{{ route('admin.dashboard') }}">Dashboard</a>
-								    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-from').submit();">log Out</a>
-								  </div>
-								  <form id="logout-from" method="POST" action="{{ route('logout') }}">
+                             @auth
+                                @if(Auth::user()->utype === 'ADM')
+                                <div class="dropdown">
+                                    <a href="#" ><i class="fa fa-user"></i></a>
+                                  <div class="dropdown-content">
+                                    <a href="#">{{Auth::user()->name}}</a>
+                                    <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-from').submit();">log Out</a>
+                                  </div>
+                                  <form id="logout-from" method="POST" action="{{ route('logout') }}">
                                     @csrf
                                 </form>
-								</div>
-			               	 	@else
-			               	 		<div class="dropdown">
-									  <i class="fa fa-user"></i>
-									  <div class="dropdown-content">
-									  	<a href="#">{{Auth::user()->name}}</a>
-									    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-from').submit();">logOut</a>
-									  </div>
-									  <form id="logout-from" method="POST" action="{{ route('logout') }}">
+                                </div>
+                                @else
+                                    <div class="dropdown">
+                                      <i class="fa fa-user"></i>
+                                      <div class="dropdown-content">
+                                        <a href="#">{{Auth::user()->name}}</a>
+                                        <a href="{{ route('user.password') }}">Change Password</a>
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-from').submit();">logOut</a>
+                                      </div>
+                                      <form id="logout-from" method="POST" action="{{ route('logout') }}">
                                     @csrf
                                 </form>
-									</div>
-			               	 	@endif
-			               	 @else
-			               	<li class="dropdown">
-                                <a href="#" ><i class="fa fa-user"></i></a>
-                                <div class="dropdown-content">
+                                    </div>
+                                @endif
+                             @else
+                             <li class="dropdown">
+                                    <a href="#" ><i class="fa fa-user"></i></a>
+                                    <div class="dropdown-content">
                                     <a href="{{route('register')}}" style="color: white;"> Register <i class="fa fa-user" style="color: white;"></i> </a>
                                     <a href="{{route('login')}}" style="color: white;"> Login <i class="fa fa-user" style="color: white;"></i> </a>
-                                </div>
+                                  </div>
                              </li>
-			               	 @endif
-			                @endif
+                             @endif
+                            @endif
 
-			                </ul>
+                            </ul>
                         </div> <!-- right icon -->
                     </div>
                 </div> <!-- row -->
@@ -283,12 +286,11 @@
     
     <!--====== SEARCH BOX PART ENDS ======-->
 
-    @yield('content')
+   {{$slot}}
 
 
         <!--====== FOOTER PART START ======-->
-    
-    <footer id="footer-part">
+  <footer id="footer-part">
         <div class="footer-top pt-20 pb-30">
             <div class="container">
                 <div class="row">
@@ -299,9 +301,9 @@
                             </div>
                             <p>“Terbinanya insan akademis, pencipta, pengabdi yang bernafaskan Islam, dan bertangung jawab atas terwujudnya masyarakat adil makmur yang diridhoi Allah SWT”.</p>
                             <ul class="mt-20">
-                                <li><a href=""><i class="fa fa-envelope-o"></i></a></li>
-                                <li><a href="https://youtube.com/channel/UCLpoB2wxPdYckGMtFRDjqdg"><i class="fa fa-youtube"><i class="fa fa-youtube"></i></a></li>
-                                <li><a href="https://api.whatsapp.com/send?phone=+62 823-3298-1714&text=Assalamualaikum%20Kanda/Yunda"><i class="fa fa-whatsapp"><i class="fa fa-whatsapp"></i></a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i></a></li>
+                                <li><a href="https://youtube.com/channel/UCLpoB2wxPdYckGMtFRDjqdg"><i class="fa fa-youtube"></i></a></li>
+                                <li><a href="https://api.whatsapp.com/send?phone=+62 823-3298-1714&text=Assalamualaikum%20Kanda/Yunda"><i class="fa fa-whatsapp"></i></a></li>
                                 <li><a href="https://instagram.com/hmi.cabangponorogo.official?utm_medium=copy_link"><i class="fa fa-instagram"></i></a></li>
                             </ul>
                         </div> <!-- footer about -->
@@ -354,7 +356,7 @@
                                         <i class="fa fa-envelope-o"></i>
                                     </div>
                                     <div class="cont">
-                                        <p>hmicabangonrogo@gmail.com</p>
+                                        <p>hmicabangponrogobersinergi@gmail.com</p>
                                     </div>
                                 </li>
                             </ul>
@@ -467,6 +469,7 @@
         setInterval(showTime, 500);
     //-->
     </script>
-    
+    @stack('scripts')
+    @livewireScripts
 </body>
 </html>

@@ -65,10 +65,6 @@ class AdminKetumKom extends Component
         $ketuakom = Ketuakom::where('id',$id)->first();
         $this->komisariat_id = $ketuakom->id;
         $this->name = $ketuakom->name;
-        $this->web = $ketuakom->web;
-        $this->ig = $ketuakom->ig;
-        $this->fb = $ketuakom->fb;
-        $this->wa = $ketuakom->wa;
         $this->image = $ketuakom->image;
         $this->komisariat_id = $ketuakom->komisariat_id;
     }
@@ -77,10 +73,6 @@ class AdminKetumKom extends Component
     {
         $this->validate([
             'name' => 'required',
-            'web' => 'required',
-            'ig' => 'required',
-            'fb' => 'required',
-            'wa' => 'required',
             'komisariat_id' => 'required',
         ]);
             $ketuakom = Ketuakom::find($this->komisariat_id);

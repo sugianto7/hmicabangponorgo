@@ -16,7 +16,7 @@ class Galeri extends Model
     }
     public function getCreatedAtAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->isoFormat('dddd, D MMMM Y');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->isoFormat('ddd, D MMM Y');
     }
 
     public function getUpdatedAtAttribute($date)

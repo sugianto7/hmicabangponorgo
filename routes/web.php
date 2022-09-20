@@ -23,7 +23,7 @@ use App\Http\Livewire\GaleriKegiatan;
 use App\Http\Livewire\KomisariatSecabang;
 use App\Http\Livewire\HomeDetail;
 use App\Http\Livewire\TentangCabang;
-
+use App\Http\Livewire\Actifitas;
 
 use App\Http\Livewire\Admin\AdminDashboard;
 use App\Http\Livewire\Admin\AdminProfils;
@@ -49,9 +49,11 @@ use App\Http\Livewire\Admin\AdminProker;
 use App\Http\Livewire\Admin\EditAdminProker;
 use App\Http\Livewire\Admin\AdminKomisariat;
 use App\Http\Livewire\Admin\AdminKetumKom;
+use App\Http\Livewire\Admin\AdminAktifitas;
 
 use App\Http\Livewire\User\UserDashboard;
 use App\Http\Livewire\User\UserPassword;
+// use App\Http\Livewire\User\Artikel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -102,8 +104,10 @@ Route::get('/oleh/{slug}',TentangCabang::class)->name('tentang');
 Route::get('/autoComplete', [SearchController::class, 'autocomplete'])->name('autocomplete');
 Route::post('/search', [SearchController::class, 'search'])->name('search');
 
+Route::get('/agenda/{slug}',Actifitas::class)->name('aktifitas');
+
 Route::get('/artikel',Artikel::class)->name('artikel');
-Route::get('/hmi/{slug}',ArtikelSingle::class)->name('livewire.artikel-single');
+Route::get('/{slug}',ArtikelSingle::class)->name('livewire.artikel-single');
 
 Route::post('/reply/store', [Komentars::class, 'replyStore'])->name('reply.add');
 Route::get('/artikel/{category_slug}',Kategoris::class)->name('artikel.kategory');
@@ -111,9 +115,10 @@ Route::get('/artikel-penulis/{penulis_slug}',Penulise::class)->name('artikel.pen
 
 Route::middleware(['auth:sanctum'])->group(function() {
         Route::middleware(['auth:sanctum', 'verified'])->group(function() {
-            Route::get('/user/{slug}',UserDashboard::class);
+            // Route::get('/user/{slug}',UserDashboard::class);
+            Route::get('/user/profil',UserDashboard::class)->name('user.dashboard');
             Route::get('/user/password',UserPassword::class)->name('user.password');
-            Route::post('/comment/store', [Komentars::class, 'store'])->name('comment.add');
+            Route::post('/comment/store', [Komentars::class, 'store'])->name('comment.add');    
         });
     
 Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function() {
@@ -142,6 +147,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function() {
     Route::get('/admin/proker/edit/{proker_name}',EditAdminProker::class)->name('admin.editproker');
     Route::get('/admin/komisariat/hmi-se-cabang-ponorogo',AdminKomisariat::class)->name('admin.komisariat');
     Route::get('/admin/Ketua/komisariat',AdminKetumKom::class)->name('admin.ketumkom');
+    Route::get('/admin/aktifitas',AdminAktifitas::class)->name('admin.aktifitas');
 
 });
 });

@@ -29,10 +29,10 @@
                         </div>
                         <div class="social">
                             <ul>
-                                <li><a href="#"><i class="fa fa-youtube-square"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa fa-whatsapp"></i></a></li>
-                                <li><a href="#"><i class="fa fa-globe"></i></a></li>
+                                <li><a href="{{$profil->fb}}"><i class="fa fa-youtube-square"></i></a></li>
+                                <li><a href="{{$profil->ig}}"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="{{$profil->wa}}"><i class="fa fa-whatsapp"></i></a></li>
+                                <li><a href="{{$profil->web}}"><i class="fa fa-globe"></i></a></li>
                             </ul>
                         </div>
                         <div class="description">
@@ -101,19 +101,19 @@
                                     <ul>
                                        <li>
                                            <div class="singel-reviews">
-                                            @foreach ($artikels as $artikel)
+                                            @foreach ($penulis as $pen)
                                                 <div class="reviews-author">
                                                     <div class="author-thum" style="width: 150px;" >
-                                                        <a href="{{ route('livewire.artikel-single',['slug'=>$artikel->slug])}}"><img src="{{asset('assets/images/artikel')}}/{{$artikel->image }}" alt="Reviews"></a>
+                                                        <a href="{{ route('livewire.artikel-single',['slug'=>$pen->slug])}}"><img src="{{asset('assets/images/artikel')}}/{{$pen->images}}" alt="Reviews"></a>
                                                     </div>
                                                     <div class="author-name">
-                                                         <h6>Oleh : {{$artikel->penulis->name}}</h6>
-                                                        <span>{{$artikel->created_at}} WIB</span>
+                                                         <h6>Oleh : {{$pen->name}}</h6>
+                                                        <span>{{$pen->created_at}} WIB</span>
                                                     </div>
                                                 </div>
                                                 <div class="reviews-description pt-20">
-                                                    <a href="{{ route('livewire.artikel-single',['slug'=>$artikel->slug])}}"><h6>{{$artikel->name}}</h6>
-                                                    <p>{!! $artikel->short_description !!}</p></a>
+                                                    <a href="{{ route('livewire.artikel-single',['slug'=>$pen->slug])}}"><h6>{{$pen->name}}</h6>
+                
                                                 </div>
                                                 @endforeach
                                             </div> <!-- singel reviews -->

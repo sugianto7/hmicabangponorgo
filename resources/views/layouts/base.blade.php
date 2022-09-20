@@ -238,7 +238,7 @@
 			               	 		<div class="dropdown">
 									  <i class="fa fa-user"></i>
 									  <div class="dropdown-content">
-									  	<a href="#">{{Auth::user()->name}}</a>
+									  	<a href="{{ route('user.dashboard') }}">{{Auth::user()->name}}</a>
                                         <a href="{{ route('user.password') }}">Change Password</a>
 									    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-from').submit();">logOut</a>
 									  </div>
@@ -271,7 +271,6 @@
    
     <!--====== SEARCH BOX PART START ======-->
     
-
 
     {{$slot}}
 
@@ -422,6 +421,7 @@
     
     <!--====== Map js ======-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{asset('base/js/map-script.js')}}"></script>
     
     <script type="text/javascript">
@@ -461,5 +461,10 @@
     </script>
     @stack('scripts')
     @livewireScripts
+     <script>
+        window.livewire.on('userUpdated',()=>{
+            $('#userModal').modal('hide');
+        });
+</script>
 </body>
 </html>

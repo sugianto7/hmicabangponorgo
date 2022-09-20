@@ -202,6 +202,7 @@
                   <li class="nav-item"> <a class="nav-link" href="{{ route('admin.str-cabang') }}">Struktur Kepengurusan</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ route('admin.galeri') }}">Galeri</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ route('admin.proker') }}">Program Kerja</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('admin.aktifitas') }}">Agenda</a></li>
                 </ul>
               </div>
             </li>
@@ -326,14 +327,15 @@
     <script src="{{asset('assets/js/dashboard.js')}}"></script>
     <script src="{{asset('assets/js/todolist.js')}}"></script>
     <!-- End custom js for this page -->
-      <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<!--       <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> -->
     <script src="{{asset('summernote/js/jquery.min.js')}}"></script>
-    <script src="{{asset('summernote/js/bootstrap.min.js')}}"></script>
+    <!-- <script src="{{asset('summernote/js/bootstrap.min.js')}}"></script> -->
     <script src="{{asset('summernote/summernote.min.js')}}"></script>
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
     <script src="{{asset('assets/js/map-script.js')}}"></script>
-  <!-- Page level custom scripts -->
+    <script src="https://cdn.tiny.cloud/1/kjw03es6f28vnt6m3g2ziqkdkvxmufs2gmhvs9un5brbcmj1/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- <script src="{{asset('ckeditor/ckeditor.js')}}"></script> -->
   
   <script>
     $(document).ready(function () {
@@ -346,6 +348,13 @@
             $('#exampleModal').modal('hide');
         });
     </script>
+<!--     <script type="text/javascript" src="{{asset('/ckeditor/jquery/jquery-3.1.1.min.js')}}"></script>
+
+<script type="text/javascript" src="{{asset('/ckeditor/ckeditor.js')}}"></script>
+
+<script type="text/javascript" src="{{asset('/ckeditor/adapters/jquery.js')}}"></script> -->
+
+
     @stack('scripts')
 @livewireScripts
 

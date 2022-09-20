@@ -16,7 +16,8 @@ class AdminKategories extends Component
     public $updateMode = false;
     public function render()
     {
-        $kategoris = Kategori::withCount('blog')->paginate(5);
+        $kategoris = Kategori::orderBy('id','asc')->offset(4)->limit(30)->withCount('blog')->paginate(5); 
+
         return view('livewire.admin.admin-kategories',['kategoris'=>$kategoris])->layout('layouts.admin');
     }
     public function generateSlug()

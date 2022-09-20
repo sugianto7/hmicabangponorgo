@@ -19,6 +19,7 @@
               <div class="alert alert-success" style="margin-top:30px;">x
                   {{ session('message') }}</div>
                 @endif
+
               <div class="table-responsive p-3">
                   <table class="table table-bordered" id="dataTable">
                     <thead class="thead-dark">
@@ -95,20 +96,24 @@
                     <thead class="thead-dark">
                       <tr>
                         <th>No</th>
+                        <th>Gambar</th>
                         <th>Name</th>
                         <th>Tanggal</th>
                         <th>Waktu</th>
                         <th>Tempat</th>
+                        <th>Deskripsi</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
                     <tfoot>
                       <tr>
                         <th>No</th>
+                        <th>Gambar</th>
                         <th>Name</th>
                         <th>Tanggal</th>
                         <th>Waktu</th>
                         <th>Tempat</th>
+                         <th>Deskripsi</th>
                         <th>Aksi</th>
                       </tr>
                     </tfoot>
@@ -116,13 +121,15 @@
                            @foreach ($kegiatan as $no=>$kg)
                       <tr>
                         <td>{{$no + $kegiatan ->firstItem() }}</td>
+                        <td><img src="{{asset('assets/images/artikel')}}/{{$kg->image}}" style="width: 60px; border-radius: 1px;"></td>
                         <td>{{$kg->name}}</td>
-                        <td>{{$kg->tanggal}}</td>
+                        <td>{{$kg->hari->hari}},{{$kg->tanggal}}</td>
                         <td>{{$kg->waktu}}</td>
                         <td>{{$kg->tempat}}</td>
+                        <td>{!! $kg->description !!}</td>
                         <td>
                          <button wire:click="edit({{ $kg->id }})" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exmpleModal3"><i class="fa fa-edit"></i> Edit</button> 
-                            <botton onclick="confirm('serius ingin menghapus kg Cabang ....?') || event.stopImediatePropagation()" wire:click="delete({{ $kg->id }})" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Hapus</botton>
+                            <botton onclick="confirm('serius ingin menghapus kegiatang Cabang ....?') || event.stopImediatePropagation()" wire:click="deletek({{ $kg->id }})" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Hapus</botton>
                         </td>
                       </tr>
                        @endforeach
@@ -200,8 +207,23 @@
                 <div class="modal-body">
                   <div class="form-group">
                       <label for="validationServer01">Nama Kegiatan</label>
-                      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Kegiatan name" required wire:model="name">
+                      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Kegiatan name" required wire:model="name" wire:keyup="generateSlug">
                       @error('name') <span class="text-danger">{{ $message }}</span>@enderror
+                  </div>
+                  <div class="form-group">
+                      <label for="validationServer01">slug</label>
+                      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Tangal" required wire:model="slug">
+                      @error('slug') <span class="text-danger">{{ $message }}</span>@enderror
+                  </div>
+                  <div class="form-group">
+                      <label for="validationServer01">Hari</label>
+                      <select class="form-control" wire:model="hari_id">
+                          <option value="0">Hari</option>
+                          @foreach ($haris as $hari )
+                          <option value="{{$hari->id}}">{{$hari->hari}}</option>
+                          @endforeach
+                      </select>
+                      @error('hari_id') <p class="text-danger">{{$message}}</p> @enderror
                   </div>
                   <div class="form-group">
                       <label for="validationServer01">Tangal</label>
@@ -218,6 +240,16 @@
                       <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Tempat" required wire:model="tempat">
                       @error('tempat') <span class="text-danger">{{ $message }}</span>@enderror
                   </div>
+                  <div class="form-group">
+                        <label for="validationServer01">Gambar</label>
+                        <input type="file" class="form-control is-valid" placeholder="jabatan" wire:model="image">
+                  </div>
+                  <div class="form-group" >
+                      <label for="validationServer01">Deskripsi Panjang</label>
+                      <div wire:ignore>
+                          <textarea input="description" id="description" class="form-control" wire:model="description"></textarea>
+                      </div>
+                  </div>                    
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
@@ -242,8 +274,23 @@
                   <div class="form-group">
                       <label for="validationServer01">Nama Kegiatan</label>
                       <input type="hidden" wire:model="kegiatan_id">
-                      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Kegiatan name" required wire:model="name">
+                      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Kegiatan name" required wire:model="name"  wire:keyup="generateSlug">
                       @error('name') <span class="text-danger">{{ $message }}</span>@enderror
+                  </div>
+                  <div class="form-group">
+                      <label for="validationServer01">slug</label>
+                      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Tangal" required wire:model="slug">
+                      @error('slug') <span class="text-danger">{{ $message }}</span>@enderror
+                  </div>
+                  <div class="form-group">
+                      <label for="validationServer01">Hari</label>
+                      <select class="form-control" wire:model="hari_id">
+                          <option value="0">Hari</option>
+                          @foreach ($haris as $hari )
+                          <option value="{{$hari->id}}">{{$hari->hari}}</option>
+                          @endforeach
+                      </select>
+                      @error('hari_id') <p class="text-danger">{{$message}}</p> @enderror
                   </div>
                   <div class="form-group">
                       <label for="validationServer01">Tangal</label>
@@ -259,6 +306,23 @@
                       <label for="validationServer01">Tempat</label>
                       <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Tempat" required wire:model="tempat">
                       @error('tempat') <span class="text-danger">{{ $message }}</span>@enderror
+                  </div>
+                  <div class="form-group">
+                      <label for="validationServer01">Gambar</label>
+                      <input type="file" class="form-control is-valid" wire:model="newimage">
+                      @if($newimage)
+                              <img src="{{$newimage->temporaryUrl()}}" width="120">
+                          @else
+                              <img src="{{asset('assets/images/artikel')}}/{{$image}}" width="120">
+                          @endif 
+                        @error('newimage') <p class="text-danger">{{$message}}</p> @enderror
+                  </div>
+                  <div class="form-group" >
+                      <label for="validationServer01">Deskripsi Panjang</label>
+                       
+                      <div>
+                          <textarea type="text" id="description" input="description" class="form-control is-valid" wire:model="description"></textarea>
+                      </div>
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -276,3 +340,19 @@
     $('#exampleModal').modal('hide');
   });
 </script>
+@push('scripts')
+<script>
+    $(function(){
+        tinymce.init({
+            selector:'#description',
+            setup:function(editor){
+                editor.on('change',function(e){
+                    tinyMCE.triggerSave();
+                    var d_data = $('#description').val();
+                    @this.set('description',d_data);
+                });
+            }            
+        });
+    });
+</script>
+@endpush

@@ -75,7 +75,7 @@
                         <li>
                             <div class="singel-event">
                                 <span><i class="fa fa-calendar"></i> {{$kg->tanggal}}</span>
-                                <a href="events-singel.html"><h4>{{$kg->name}}</h4></a>
+                                <a href="{{route('aktifitas',['slug'=>$kg->slug])}}"><h4>{{$kg->name}}</h4></a>
                                 <span><i class="fa fa-clock-o"></i>{{$kg->waktu}}</span>
                                 <span><i class="fa fa-map-marker"></i>{{$kg->tempat}}</span>
                             </div>
@@ -91,7 +91,7 @@
     </div>
 </section>
 
-<!--====== ABOUT PART ENDS ======-->
+<!--====== ABOUT PART ENDS yakinusahasampai2022======-->
 
 
 <!--====== COURSE PART START ======-->

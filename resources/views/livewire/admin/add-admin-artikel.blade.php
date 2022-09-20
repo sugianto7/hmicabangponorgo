@@ -104,10 +104,10 @@
                                             <input type="text" class="form-control" id="inputPassword3" placeholder="Deskripsi pendek"  wire:model="short_description">
                                         </div>
                                     </div>
-                                    <div class="form-group row" wire:ignore>
+                                    <div class="form-group row" >
                                         <label class="col-sm-3 col-form-label">Deskripsi Panjang</label>
-                                        <div class="col-sm-12" >
-                                            <textarea type="text" input="description" id="summernote" class="form-control summernote" wire:model="description"></textarea>
+                                        <div class="col-sm-12" wire:ignore>
+                                            <textarea input="description" id="description" class="form-control" wire:model="description"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -124,7 +124,21 @@
     </div>
 </div>
 @push('scripts')
-<script type="text/javascript">
+<script>
+    $(function(){
+        tinymce.init({
+            selector:'#description',
+            setup:function(editor){
+                editor.on('change',function(e){
+                    tinyMCE.triggerSave();
+                    var d_data = $('#description').val();
+                    @this.set('description',d_data);
+                });
+            }            
+        });
+    });
+</script>
+<!-- <script type="text/javascript">
   $('.summernote').summernote({
       placeholder:" deskripsi Panjang",
       tabsize: 2,
@@ -135,5 +149,5 @@
       }
   }
   });
-</script>
+</script> -->
 @endpush
